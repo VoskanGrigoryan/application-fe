@@ -1,0 +1,12 @@
+.icon {
+  color: var(--mantine-color-blue-6);
+  width: 80px;
+  height: 80px;
+}
+
+.paperContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}

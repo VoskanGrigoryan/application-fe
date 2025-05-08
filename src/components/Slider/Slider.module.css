@@ -1,0 +1,39 @@
+.adopciones_destacadas {
+  text-align: left;
+}
+
+.title {
+  margin-bottom: 12px;
+}
+
+.fullSlide {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.fullImage {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 1rem;
+  border-radius: 1rem;
+  color: white;
+}
+
+.saberMasButton {
+  width: 70%;
+  opacity: 0.9;
+  margin: 0 auto;
+  display: block;
+}
