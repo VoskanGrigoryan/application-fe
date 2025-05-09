@@ -25,8 +25,6 @@ const mockdata = [
 
 export function Navbar({ toggle }: { toggle: () => void }) {
   const router = useRouter();
-  const pathname = usePathname();
-  const setFilterDrawerOpened = useUiStore((state) => state.setFilterDrawerOpened);
   const [isPending, startTransition] = useTransition();
 
   const links = mockdata.map((item) => {

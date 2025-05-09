@@ -42,7 +42,6 @@ export function BaseShell({ children }: { children: React.ReactNode }) {
       <AppShell.Navbar>
         <Navbar toggle={toggle} />
       </AppShell.Navbar>
-      {/* <AppShell.Main>{children}</AppShell.Main> */}
       <AppShell.Main
         style={{
           width: isMobile ? "100%" : "calc(100vw - 280px)",
@@ -82,7 +81,9 @@ export function BaseShell({ children }: { children: React.ReactNode }) {
       {pathname === "/vistas/adopciones" && !isFilterDrawerOpened && (
         <Button
           variant="gradient"
-          onClick={() => setFilterDrawerOpened(true)}
+          onClick={() => {
+            setFilterDrawerOpened(true);
+          }}
           aria-label="Abrir filtros"
           style={{
             position: "fixed",
