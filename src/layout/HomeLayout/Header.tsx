@@ -1,4 +1,4 @@
-import { AppShell, Burger } from "@mantine/core";
+import { AppShell, Burger, Text } from "@mantine/core";
 import classes from "./css/Header.module.css";  
 
 export function Header({
@@ -10,8 +10,8 @@ export function Header({
 }) {
   return (
     <AppShell.Header className={classes.header}>
-      <Burger opened={opened} onClick={toggle} hiddenFrom="sm" />
-      <div className={classes.title}>Patitas Felices</div>
+      <Burger opened={opened} onClick={toggle} hiddenFrom="sm" color="white" />
+      <Text fs="italic" className={classes.title}>Patitas Felices</Text >
     </AppShell.Header>
   );
 }

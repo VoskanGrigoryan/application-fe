@@ -1,39 +1,27 @@
-.adopciones_destacadas {
-  text-align: left;
+
+
+.cardRoot {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* en el contenedor */
+  min-height: 400px; /* o el valor que quede bien */
+  max-height: 400px;
 }
 
-.title {
-  margin-bottom: 12px;
-}
-
-.fullSlide {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-.fullImage {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-
-.card {
-  height: 100%;
+.cardContent {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 1rem;
-  border-radius: 1rem;
-  color: white;
 }
 
-.saberMasButton {
-  width: 70%;
-  opacity: 0.9;
-  margin: 0 auto;
-  display: block;
+
+.cardImage {
+  object-fit: cover;
+}
+
+.card {
+  height: 160px; /* or any consistent height */
+  width: 100%;
+  object-fit: cover;
 }

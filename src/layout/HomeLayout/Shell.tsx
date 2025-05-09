@@ -8,9 +8,12 @@ import classes from "./css/AppShell.module.css";
 import { IconFilter } from "@tabler/icons-react";
 import { useUiStore } from "@/src/stores/useUIStore";
 import { usePathname } from "next/navigation";
+import { useMediaQuery } from "@mantine/hooks";
 
 export function BaseShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   const [opened, { toggle }] = useDisclosure();
 
   const isFilterDrawerOpened = useUiStore(
@@ -23,12 +26,8 @@ export function BaseShell({ children }: { children: React.ReactNode }) {
   return (
     <AppShell
       className={classes.AppShellMain}
-      header={{ height: 70 }}
-      navbar={{
-        width: 240,
-        breakpoint: "sm",
-        collapsed: { mobile: !opened },
-      }}
+      header={{ height: 64 }}
+      navbar={{ width: 280, breakpoint: "sm", collapsed: { mobile: !opened } }}
       aside={{
         width: 300,
         breakpoint: "md",
@@ -43,8 +42,19 @@ export function BaseShell({ children }: { children: React.ReactNode }) {
       <AppShell.Navbar>
         <Navbar toggle={toggle} />
       </AppShell.Navbar>
-      <AppShell.Main>{children}</AppShell.Main>
-
+      {/* <AppShell.Main>{children}</AppShell.Main> */}
+      <AppShell.Main
+        style={{
+          width: isMobile ? "100%" : "calc(100vw - 280px)",
+          marginLeft: isMobile ? 0 : 280,
+          minHeight: "100vh",
+          padding: 30,
+          paddingTop: "90px",
+          backgroundColor: "#f8f9fa",
+        }}
+      >
+        {children}
+      </AppShell.Main>
       {/* Eventos esperan recibir una funcion, no el resultado de esta */}
       <Drawer
         position="right"
@@ -61,7 +71,7 @@ export function BaseShell({ children }: { children: React.ReactNode }) {
         scrollAreaComponent={(props) => <div {...props} />}
         styles={{
           content: {
-            maxHeight: "100dvh",
+            maxHeight: "100vh",
             overflowY: "auto",
           },
         }}

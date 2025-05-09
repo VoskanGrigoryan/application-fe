@@ -1,13 +1,21 @@
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-left: 20px;
-    margin-right: 20px;
-}
+    justify-content: center;
+    background-image: linear-gradient(135deg, var(--mantine-color-blue-6), var(--mantine-color-cyan-5));
+  }
+  
+  @media (max-width: 768px) {
+    .header {
+      justify-content: space-between;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
 
 .title {
-    color: var(--mantine-color-blue-5);
+    color: #ffffff;
     font-weight: 700;
     font-size: x-large;
+   
 }
