@@ -1,6 +1,6 @@
 "use client";
 
-import { AppShell, Button, Drawer } from "@mantine/core";
+import { AppShell, Drawer } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Navbar } from "./Navbar";
 import { Header } from "./Header";
@@ -8,12 +8,13 @@ import classes from "./css/AppShell.module.css";
 import { IconFilter } from "@tabler/icons-react";
 import { useUiStore } from "@/src/stores/useUIStore";
 import { usePathname } from "next/navigation";
-import { useMediaQuery } from "@mantine/hooks";
-import AdoptionFilters from "@/src/components/Adoptions/AdoptionFilters";
+import AdoptionFilters from "@/src/components/adoptions/AdoptionFilters";
+import MyButton from "@/src/components/generic/button";
+import useIsMobile from "@/src/hooks/useIsMobile";
 
 export function BaseShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useIsMobile();
 
   const [opened, { toggle }] = useDisclosure();
 
@@ -23,6 +24,9 @@ export function BaseShell({ children }: { children: React.ReactNode }) {
   const setFilterDrawerOpened = useUiStore(
     (state) => state.setFilterDrawerOpened
   );
+
+  const condicionMobileFilterButton =
+    pathname === "/vistas/adopciones" && !isFilterDrawerOpened && isMobile;
 
   return (
     <AppShell
@@ -48,7 +52,7 @@ export function BaseShell({ children }: { children: React.ReactNode }) {
           width: isMobile ? "100%" : "calc(100vw - 220px)",
           marginLeft: isMobile ? 0 : 220,
           minHeight: "100vh",
-          padding: 30,
+          padding: 44,
           paddingTop: "90px",
           backgroundColor: "#f8f9fa",
         }}
@@ -80,26 +84,16 @@ export function BaseShell({ children }: { children: React.ReactNode }) {
         <AdoptionFilters />
       </Drawer>
 
-      {pathname === "/vistas/adopciones" &&
-        !isFilterDrawerOpened &&
-        isMobile && (
-          <Button
-            size="md"
-            variant="gradient"
-            onClick={() => {
-              setFilterDrawerOpened(true);
-            }}
-            aria-label="Abrir filtros"
-            style={{
-              position: "fixed",
-              bottom: 20,
-              right: 20,
-              zIndex: 1000,
-            }}
-          >
-            <IconFilter size={24} stroke={1.5} /> Filtros
-          </Button>
-        )}
+      {condicionMobileFilterButton && (
+        <MyButton
+          onClick={() => {
+            setFilterDrawerOpened(true);
+          }}
+          className={classes.MobileFilterButton}
+        >
+          <IconFilter size={24} stroke={1.5} /> Filtros
+        </MyButton>
+      )}
     </AppShell>
   );
 }

@@ -1,5 +1,5 @@
-import EventosCercanos from "@/src/components/EventosCercanos";
-import HomeSlider from "@/src/components/Slider/HomeSlider";
+import EventosCercanos from "@/src/components/events/EventosCercanos";
+import HomeSlider from "@/src/components/slider/HomeSlider";
 import { BaseShell } from "@/src/layout/HomeLayout/Shell";
 
 export default function Home() {

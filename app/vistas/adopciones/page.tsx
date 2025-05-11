@@ -1,15 +1,14 @@
 "use client";
 
-import AdoptionCard from "@/src/components/Adoptions/AdoptionCard";
-import AdoptionFilters from "@/src/components/Adoptions/AdoptionFilters";
+import AdoptionCard from "@/src/components/adoptions/AdoptionCard";
+import AdoptionFilters from "@/src/components/adoptions/AdoptionFilters";
+import useIsMobile from "@/src/hooks/useIsMobile";
 import { BaseShell } from "@/src/layout/HomeLayout/Shell";
-import { useMediaQuery } from "@mantine/hooks";
 
 export default function AdoptionsPage() {
+  const isMobile = useIsMobile();
 
-  const isMobile = useMediaQuery("(max-width: 768px)");
-  
-  return ( 
+  return (
     <BaseShell>
       {isMobile ? null : <AdoptionFilters />}
       <AdoptionCard />

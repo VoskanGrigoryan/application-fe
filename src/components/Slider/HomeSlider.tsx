@@ -1,10 +1,12 @@
 "use client";
 
 import React from "react";
-import { Badge, Button, Group, Paper, Text, Card, Image } from "@mantine/core";
+import { Badge, Group, Text, Card, Image } from "@mantine/core";
 import { Carousel } from "@mantine/carousel";
-import { useMediaQuery } from "@mantine/hooks";
 import classes from "./Slider.module.css";
+import MyButton from "../generic/button";
+import useIsMobile from "@/src/hooks/useIsMobile";
+import MyPaper from "../generic/paper";
 
 interface CardProps {
   image: string;
@@ -16,8 +18,8 @@ interface CardProps {
 function CustomCard({ image, title, type, descripcionCorta }: CardProps) {
   return (
     <Card
-      shadow="sm"
-      padding="lg"
+      shadow="lg"
+      padding="md"
       radius="md"
       withBorder
       className={classes.cardRoot}
@@ -32,7 +34,7 @@ function CustomCard({ image, title, type, descripcionCorta }: CardProps) {
 
       <div className={classes.cardContent}>
         <div>
-          <Group justify="space-between" mt="md" mb="xs">
+          <Group justify="space-between" mt="sm" mb="xs">
             <Text fw={500}>{title}</Text>
             <Badge color="green">{type}</Badge>
           </Group>
@@ -42,22 +44,14 @@ function CustomCard({ image, title, type, descripcionCorta }: CardProps) {
           </Text>
         </div>
 
-        <Button
-          variant="gradient"
-          gradient={{ from: "blue", to: "cyan", deg: 89 }}
-          fullWidth
-          mt="md"
-          radius="md"
-        >
-          Saber más
-        </Button>
+        <MyButton mt="md">Saber más</MyButton>
       </div>
     </Card>
   );
 }
 
 const HomeSlider = () => {
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useIsMobile();
 
   const carousel = (
     <Carousel
@@ -77,13 +71,7 @@ const HomeSlider = () => {
 
   const content = <>{carousel}</>;
 
-  return isMobile ? (
-    <div>{content}</div>
-  ) : (
-    <Paper shadow="sm" radius="md" withBorder p="md">
-      {content}
-    </Paper>
-  );
+  return isMobile ? <div>{content}</div> : <MyPaper p="md">{content}</MyPaper>;
 };
 
 export default HomeSlider;

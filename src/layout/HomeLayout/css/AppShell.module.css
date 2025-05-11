@@ -3,3 +3,10 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+.MobileFilterButton {
+  position: fixed;
+  bottom: 20;
+  right: 20;
+  z-index: 1000;
+}

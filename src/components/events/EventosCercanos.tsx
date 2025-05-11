@@ -1,14 +1,11 @@
-import { Paper, Text, Title, UnstyledButton } from "@mantine/core";
+import { Text, UnstyledButton } from "@mantine/core";
 import { IconCalendarOff } from "@tabler/icons-react";
 import classes from "./Styles.module.css";
+import MyPaper from "../generic/paper";
 
 export default function EventosCercanos() {
   return (
-    <Paper
-      shadow="sm"
-      radius="md"
-      withBorder
-      p="lg"
+    <MyPaper
       style={{
         marginTop: 28,
       }}
@@ -19,6 +16,6 @@ export default function EventosCercanos() {
         </UnstyledButton>
         <Text size="md">No hay eventos proximos</Text>
       </div>
-    </Paper>
+    </MyPaper>
   );
 }

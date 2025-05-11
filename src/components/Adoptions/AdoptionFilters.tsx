@@ -1,6 +1,9 @@
 import { AdoptionFilterSelectList } from "@/src/arrays/adoptionFilter";
-import { Button, Grid, Paper, Select } from "@mantine/core";
+import { Grid, Select } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
+import MyButton from "../generic/button";
+import useIsMobile from "@/src/hooks/useIsMobile";
+import MyPaper from "../generic/paper";
 
 interface ISelectFiltro {
   label?: string;
@@ -9,14 +12,11 @@ interface ISelectFiltro {
   defaultValue?: string;
 }
 
-const SelectFiltro = ({
-  placeholder,
-  data,
-}: ISelectFiltro) => {
+const SelectFiltro = ({ placeholder, data }: ISelectFiltro) => {
   return (
     <Grid.Col span={{ base: 12, md: 6, lg: 3, xl: 2 }}>
       <Select
-      checkIconPosition="right"
+        checkIconPosition="right"
         placeholder={placeholder}
         data={data}
         allowDeselect
@@ -28,23 +28,21 @@ const SelectFiltro = ({
 };
 
 export default function AdoptionFilters() {
+
+  const isMobile = useIsMobile();
+
   return (
-    <Paper shadow="md" withBorder p="md" style={{ marginBottom: 20 }}>
+    <MyPaper shadow={!isMobile ? "md" : "none"} withBorder={!isMobile} p={!isMobile ? "md" : 0} style={{ marginBottom: 20 }}>
       <Grid>
         {AdoptionFilterSelectList.map((item) => {
           return <SelectFiltro key={item.label} {...item} />;
         })}
         <Grid.Col span={{ base: 12, md: 6, lg: 3, xl: 2 }}>
-          <Button
-          fullWidth
-            variant="gradient"
-            gradient={{ from: "blue", to: "cyan", deg: 90 }}
-             rightSection={<IconSearch size={14} />}
-          >
+          <MyButton fullWidth rightSection={<IconSearch size={14} />}>
             Buscar
-          </Button>
+          </MyButton>
         </Grid.Col>
       </Grid>
-    </Paper>
+    </MyPaper>
   );
 }

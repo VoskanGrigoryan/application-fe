@@ -1,8 +1,9 @@
 "use client";
 
-import { Badge, Button, Card, Grid, Group, Image, Text } from "@mantine/core";
+import { Badge, Card, Grid, Group, Image, Text } from "@mantine/core";
 import classes from "./AdoptionCard.module.css";
 import { useRouter } from "next/navigation";
+import MyButton from "../generic/button";
 
 const mockdata = {
   image:
@@ -64,8 +65,7 @@ export default function AdoptionCard() {
               </Card.Section>
 
               <Group mt="xs">
-                <Button
-                  radius="md"
+                <MyButton
                   variant="light"
                   style={{ flex: 1 }}
                   onClick={() => {
@@ -73,7 +73,7 @@ export default function AdoptionCard() {
                   }}
                 >
                   Saber mas
-                </Button>
+                </MyButton>
               </Group>
             </Card>
           </Grid.Col>
