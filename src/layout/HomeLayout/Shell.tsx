@@ -9,6 +9,7 @@ import { IconFilter } from "@tabler/icons-react";
 import { useUiStore } from "@/src/stores/useUIStore";
 import { usePathname } from "next/navigation";
 import { useMediaQuery } from "@mantine/hooks";
+import AdoptionFilters from "@/src/components/Adoptions/AdoptionFilters";
 
 export function BaseShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -27,7 +28,7 @@ export function BaseShell({ children }: { children: React.ReactNode }) {
     <AppShell
       className={classes.AppShellMain}
       header={{ height: 64 }}
-      navbar={{ width: 280, breakpoint: "sm", collapsed: { mobile: !opened } }}
+      navbar={{ width: 220, breakpoint: "sm", collapsed: { mobile: !opened } }}
       aside={{
         width: 300,
         breakpoint: "md",
@@ -44,8 +45,8 @@ export function BaseShell({ children }: { children: React.ReactNode }) {
       </AppShell.Navbar>
       <AppShell.Main
         style={{
-          width: isMobile ? "100%" : "calc(100vw - 280px)",
-          marginLeft: isMobile ? 0 : 280,
+          width: isMobile ? "100%" : "calc(100vw - 220px)",
+          marginLeft: isMobile ? 0 : 220,
           minHeight: "100vh",
           padding: 30,
           paddingTop: "90px",
@@ -54,9 +55,10 @@ export function BaseShell({ children }: { children: React.ReactNode }) {
       >
         {children}
       </AppShell.Main>
+
       {/* Eventos esperan recibir una funcion, no el resultado de esta */}
       <Drawer
-        position="right"
+        position="left"
         opened={isFilterDrawerOpened}
         offset={12}
         radius="md"
@@ -75,26 +77,29 @@ export function BaseShell({ children }: { children: React.ReactNode }) {
           },
         }}
       >
-        {/* Drawer content goes here */}
+        <AdoptionFilters />
       </Drawer>
 
-      {pathname === "/vistas/adopciones" && !isFilterDrawerOpened && (
-        <Button
-          variant="gradient"
-          onClick={() => {
-            setFilterDrawerOpened(true);
-          }}
-          aria-label="Abrir filtros"
-          style={{
-            position: "fixed",
-            bottom: 20,
-            right: 20,
-            zIndex: 1000,
-          }}
-        >
-          <IconFilter size={20} stroke={1.5} /> Filtros
-        </Button>
-      )}
+      {pathname === "/vistas/adopciones" &&
+        !isFilterDrawerOpened &&
+        isMobile && (
+          <Button
+            size="md"
+            variant="gradient"
+            onClick={() => {
+              setFilterDrawerOpened(true);
+            }}
+            aria-label="Abrir filtros"
+            style={{
+              position: "fixed",
+              bottom: 20,
+              right: 20,
+              zIndex: 1000,
+            }}
+          >
+            <IconFilter size={24} stroke={1.5} /> Filtros
+          </Button>
+        )}
     </AppShell>
   );
 }

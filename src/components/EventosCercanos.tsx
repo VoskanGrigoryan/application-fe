@@ -10,10 +10,9 @@ export default function EventosCercanos() {
       withBorder
       p="lg"
       style={{
-        marginTop: 40,
+        marginTop: 28,
       }}
     >
-      <Title order={4}>Eventos cercanos</Title>
       <div className={classes.paperContainer}>
         <UnstyledButton component="a" href="#">
           <IconCalendarOff stroke={1.5} className={classes.icon} />

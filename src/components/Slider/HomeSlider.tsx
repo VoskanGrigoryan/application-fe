@@ -75,14 +75,7 @@ const HomeSlider = () => {
     </Carousel>
   );
 
-  const content = (
-    <>
-      <Text size="xl" className={classes.title}>
-        Adopciones destacadas
-      </Text>
-      <div>{carousel}</div>
-    </>
-  );
+  const content = <>{carousel}</>;
 
   return isMobile ? (
     <div>{content}</div>
@@ -124,7 +117,7 @@ const images = [
     type: "gatitos",
     descripcionCorta: "Prisioneros de guerra Libaneses",
   },
-   {
+  {
     image:
       "https://www.fearfreehappyhomes.com/wp-content/uploads/2020/08/shutterstock_594021170.jpg",
     title: "Perry y Zoe 2",

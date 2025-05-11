@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { usePathname } from "next/navigation";
 import { ScrollArea, Text, UnstyledButton } from "@mantine/core";
 import classes from "./css/Navbar.module.css";
 import {
@@ -12,8 +11,7 @@ import {
   IconCalendarEvent,
 } from "@tabler/icons-react";
 import { Footer } from "./Footer";
-import { useTransition, useEffect } from "react";
-import { useUiStore } from "@/src/stores/useUIStore";
+import { useTransition } from "react";
 
 const mockdata = [
   { label: "Inicio", icon: IconHome, url: "/" },

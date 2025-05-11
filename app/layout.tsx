@@ -23,7 +23,16 @@ export const metadata: Metadata = {
   },
 };
 
-const theme = createTheme({});
+const theme = {
+  breakpoints: {
+    xs: "500px",
+    sm: "768px",
+    md: "992px",
+    lg: "1280px",
+    xl: "1920px",
+  },
+};
+
 
 export default function RootLayout({
   children,
