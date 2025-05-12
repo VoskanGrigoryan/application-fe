@@ -11,7 +11,7 @@ const MyButton = ({
   children,
   size = "sm",
   variant = "gradient",
-  radius = "md",
+  radius = "sm",
   ariaLabel,
   onClick,
   ...props

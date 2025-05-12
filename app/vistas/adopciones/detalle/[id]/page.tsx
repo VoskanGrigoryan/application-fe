@@ -1,24 +1,31 @@
-import MyPaper from "@/src/components/generic/paper";
+import AdoptionDetail from "@/src/components/adoptions/AdoptionDetail";
 import { BaseShell } from "@/src/layout/HomeLayout/Shell";
-import { Anchor, Breadcrumbs } from "@mantine/core";
+import { Anchor, Breadcrumbs, Text } from "@mantine/core";
 
-const items = [
+const rawItems = [
   { title: "Inicio", href: "/" },
   { title: "Lista de adopciones", href: "/vistas/adopciones" },
   { title: "Detalle", href: `/vistas/adopciones/${"id"}` },
-].map((item, index) => (
-  <Anchor href={item.href} key={index}>
-    {item.title}
-  </Anchor>
-));
+];
 
-export default function AdoptionDetail() {
+const items = rawItems.map((item, index) => {
+  const isLast = index === rawItems.length - 1;
+  return isLast ? (
+    <Text key={index} c="dimmed">
+      {item.title}
+    </Text>
+  ) : (
+    <Anchor href={item.href} key={index}>
+      {item.title}
+    </Anchor>
+  );
+});
+
+export default function AdoptionDetailView() {
   return (
     <BaseShell>
-      <Breadcrumbs style={{marginBottom: 20}}>{items}</Breadcrumbs>
-      <MyPaper>
-        detalle
-      </MyPaper>
+      <Breadcrumbs style={{ marginBottom: 20 }}>{items}</Breadcrumbs>
+      <AdoptionDetail />
     </BaseShell>
   );
 }

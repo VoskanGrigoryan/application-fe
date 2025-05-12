@@ -52,8 +52,8 @@ export function BaseShell({ children }: { children: React.ReactNode }) {
           width: isMobile ? "100%" : "calc(100vw - 220px)",
           marginLeft: isMobile ? 0 : 220,
           minHeight: "100vh",
-          padding: 44,
-          paddingTop: "90px",
+          padding: isMobile ? 20 : 40,
+          paddingTop: isMobile ? 86 : 90,
           backgroundColor: "#f8f9fa",
         }}
       >
