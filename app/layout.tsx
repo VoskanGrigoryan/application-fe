@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
 };
 
-const theme = {
+const theme = createTheme({
   breakpoints: {
     xs: "500px",
     sm: "768px",
@@ -31,7 +31,9 @@ const theme = {
     lg: "1280px",
     xl: "1920px",
   },
-};
+  primaryColor: "violet",
+  primaryShade: 6,
+});
 
 
 export default function RootLayout({

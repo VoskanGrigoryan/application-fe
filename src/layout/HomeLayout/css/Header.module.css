@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: linear-gradient(135deg, var(--mantine-color-blue-6), var(--mantine-color-cyan-5));
+    background-color: var(--mantine-color-violet-5);
   }
   
   @media (max-width: 768px) {
