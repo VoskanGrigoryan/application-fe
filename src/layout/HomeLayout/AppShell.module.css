@@ -1,0 +1,38 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--mantine-color-green-5);
+}
+
+.control {
+  color: #ffffff;
+  font-size: x-large;
+  border: none;
+  margin-left: 40px;
+  margin-right: 40px;
+  cursor: pointer;
+}
+
+.control:hover,
+.control:focus {
+  background: none;
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+@media (max-width: 768px) {
+  .control {
+    font-size: x-large;
+    margin-left: 12px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    margin-right: 12px;
+    background-color: var(--mantine-color-green-4);
+    text-align: center;
+    border-radius: 8px;
+    color: #ffffff !important;
+  }
+}

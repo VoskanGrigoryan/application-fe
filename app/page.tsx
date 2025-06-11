@@ -1,12 +1,10 @@
-import EventosCercanos from "@/src/components/events/EventosCercanos";
-import HomeSlider from "@/src/components/slider/HomeSlider";
 import { BaseShell } from "@/src/layout/HomeLayout/Shell";
+import Home from "@/app/vista/home/page";
 
-export default function Home() {
+export default function MainPage() {
   return (
     <BaseShell>
-      <HomeSlider />
-      <EventosCercanos />
+      <Home />
     </BaseShell>
   );
 }

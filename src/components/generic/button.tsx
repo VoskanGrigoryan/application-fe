@@ -9,8 +9,9 @@ interface IMyButton extends ButtonProps {
 
 const MyButton = ({
   children,
+  color,
   size = "sm",
-  variant = "gradient",
+  variant = "filled",
   radius = "sm",
   ariaLabel,
   onClick,
@@ -18,6 +19,7 @@ const MyButton = ({
 }: IMyButton) => {
   return (
     <Button
+      color={color}
       size={size}
       variant={variant}
       radius={radius}

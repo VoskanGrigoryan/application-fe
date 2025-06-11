@@ -1,99 +1,81 @@
 "use client";
 
-import { AppShell, Drawer } from "@mantine/core";
+import { AppShell, Burger, Group, UnstyledButton } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { Navbar } from "./Navbar";
-import { Header } from "./Header";
-import classes from "./css/AppShell.module.css";
-import { IconFilter } from "@tabler/icons-react";
-import { useUiStore } from "@/src/stores/useUIStore";
-import { usePathname } from "next/navigation";
-import AdoptionFilters from "@/src/components/adoptions/AdoptionFilters";
-import MyButton from "@/src/components/generic/button";
-import useIsMobile from "@/src/hooks/useIsMobile";
+import classes from "./AppShell.module.css";
+
+const NavbarOptions = [
+  { label: "Inicio", url: "/" },
+  { label: "Adoptar", url: "/vista/adopcion" },
+  { label: "Nosotros", url: "/vista/eventos" },
+  { label: "Contacto", url: "/potato" },
+];
 
 export function BaseShell({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-  const isMobile = useIsMobile();
-
   const [opened, { toggle }] = useDisclosure();
-
-  const isFilterDrawerOpened = useUiStore(
-    (state) => state.isFilterDrawerOpened
-  );
-  const setFilterDrawerOpened = useUiStore(
-    (state) => state.setFilterDrawerOpened
-  );
-
-  const condicionMobileFilterButton =
-    pathname === "/vistas/adopciones" && !isFilterDrawerOpened && isMobile;
 
   return (
     <AppShell
-      className={classes.AppShellMain}
-      header={{ height: 64 }}
-      navbar={{ width: 220, breakpoint: "sm", collapsed: { mobile: !opened } }}
-      aside={{
+      header={{ height: 60 }}
+      navbar={{
         width: 300,
-        breakpoint: "md",
-        collapsed: {
-          desktop: false,
-          mobile: true,
-        },
+        breakpoint: "sm",
+        collapsed: { desktop: true, mobile: !opened },
       }}
       padding="md"
     >
-      <Header opened={opened} toggle={toggle} />
+      <AppShell.Header className={classes.header}>
+        <Group h="100%" px="md">
+          <Burger
+            opened={opened}
+            onClick={toggle}
+            hiddenFrom="sm"
+            size="sm"
+            color="#fff"
+          />
+          <Group justify="space-between" visibleFrom="sm" style={{ flex: 1 }}>
+            {NavbarOptions.map((option) => {
+              return (
+                <UnstyledButton
+                  key={option.label}
+                  className={classes.control}
+                  onClick={() => {
+                    window.location.href = option.url;
+                  }}
+                >
+                  {option.label}
+                </UnstyledButton>
+              );
+            })}
+          </Group>
+        </Group>
+      </AppShell.Header>
+
       <AppShell.Navbar>
-        <Navbar toggle={toggle} />
-      </AppShell.Navbar>
-      <AppShell.Main
-        style={{
-          width: isMobile ? "100%" : "calc(100vw - 220px)",
-          marginLeft: isMobile ? 0 : 220,
-          minHeight: "100vh",
-          padding: isMobile ? 20 : 40,
-          paddingTop: isMobile ? 86 : 90,
-          backgroundColor: "#f8f9fa",
-        }}
-      >
-        {children}
-      </AppShell.Main>
-
-      {/* Eventos esperan recibir una funcion, no el resultado de esta */}
-      <Drawer
-        position="left"
-        opened={isFilterDrawerOpened}
-        offset={12}
-        radius="md"
-        transitionProps={{
-          transition: "rotate-left",
-          duration: 150,
-          timingFunction: "linear",
-        }}
-        onClose={() => setFilterDrawerOpened(false)}
-        title="Filtros de adopcion"
-        scrollAreaComponent={(props) => <div {...props} />}
-        styles={{
-          content: {
-            maxHeight: "100vh",
-            overflowY: "auto",
-          },
-        }}
-      >
-        <AdoptionFilters />
-      </Drawer>
-
-      {condicionMobileFilterButton && (
-        <MyButton
-          onClick={() => {
-            setFilterDrawerOpened(true);
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            height: "100%",
+            paddingTop: 20,
           }}
-          className={classes.MobileFilterButton}
         >
-          <IconFilter size={24} stroke={1.5} /> Filtros
-        </MyButton>
-      )}
+          {NavbarOptions.map((option) => (
+            <UnstyledButton
+              key={option.label}
+              className={classes.control}
+              style={{ color: "black" }}
+              onClick={() => {
+                window.location.href = option.url;
+              }}
+            >
+              {option.label}
+            </UnstyledButton>
+          ))}
+        </div>
+      </AppShell.Navbar>
+
+      <AppShell.Main>{children}</AppShell.Main>
     </AppShell>
   );
 }
