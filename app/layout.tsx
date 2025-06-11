@@ -31,7 +31,7 @@ const theme = createTheme({
     lg: "1280px",
     xl: "1920px",
   },
-  primaryColor: "violet",
+  primaryColor: "green",
   primaryShade: 6,
 });
 

@@ -7,7 +7,7 @@ interface IMyPaper extends PaperProps {
 
 const MyPaper = ({
   children,
-  shadow = "md",
+  shadow = "sm",
   withBorder = true,
   p = "lg",
   ...props

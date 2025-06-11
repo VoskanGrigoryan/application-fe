@@ -1,0 +1,41 @@
+.filterContainer {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .filterContainer {
+    display: block;
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+}
+
+.adoptionGrid {
+  padding-top: 20;
+}
+
+.adoptionCard {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1/1;
+  min-height: 180px;
+  flex-shrink: 0;
+}
+
+.mobileOnly {
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .mobileOnly {
+    display: none;
+  }
+}
