@@ -4,6 +4,7 @@ import "./globals.css";
 import "@mantine/core/styles.css";
 import "@mantine/carousel/styles.css";
 import { MantineProvider, createTheme } from "@mantine/core";
+import { Providers } from "./provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -71,7 +72,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <Providers>
+          <MantineProvider theme={theme}>{children}</MantineProvider>
+        </Providers>
       </body>
     </html>
   );
