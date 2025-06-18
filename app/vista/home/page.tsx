@@ -32,7 +32,7 @@ const Home = () => {
               <MyPaper className={styles.paper}>
                 <Icon
                   size={76}
-                  color="var(--mantine-color-green-5)"
+                  color="var(--mantine-color-primary-5)"
                   strokeWidth={1}
                 />
 

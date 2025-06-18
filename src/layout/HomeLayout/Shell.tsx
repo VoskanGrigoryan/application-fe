@@ -8,14 +8,24 @@ const NavbarOptions = [
   { label: "Inicio", url: "/" },
   { label: "Adoptar", url: "/vista/adopcion" },
   { label: "Nosotros", url: "/vista/eventos" },
-  { label: "Contacto", url: "/potato" },
+  { label: "Donaciones", url: "/potato" },
 ];
 
-export function BaseShell({ children }: { children: React.ReactNode }) {
+export function BaseShell({
+  children,
+  style,
+  className,
+}: {
+  children: React.ReactNode;
+  style?: React.CSSProperties;
+  className?: string;
+}) {
   const [opened, { toggle }] = useDisclosure();
 
   return (
     <AppShell
+      className={className}
+      style={style}
       header={{ height: 60 }}
       navbar={{
         width: 300,

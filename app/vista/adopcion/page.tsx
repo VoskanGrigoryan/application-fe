@@ -1,12 +1,12 @@
 "use client";
 
 import { BaseShell } from "../../../src/layout/HomeLayout/Shell";
-import { Grid, Select, Stack, Text } from "@mantine/core";
+import { Grid, Modal, Select, Stack } from "@mantine/core";
 import classes from "./Adoption.module.css";
-import MyPaper from "@/src/components/generic/paper";
-import Image from "next/image";
-import { IconAdjustmentsHorizontal, IconVenus } from "@tabler/icons-react";
+import { IconAdjustmentsHorizontal } from "@tabler/icons-react";
 import MyButton from "@/src/components/generic/button";
+import AdoptionCard from "./adoptionCard";
+import { useDisclosure } from "@mantine/hooks";
 
 const filterOptions = [
   {
@@ -47,6 +47,9 @@ const FilterForm = () => {
           mb={"sm"}
           key={opt.label}
           label={opt.label}
+          labelProps={{
+            style: { color: "var(--mantine-color-secondary-8)" },
+          }}
           placeholder={opt.placeholder}
           data={opt.data}
           searchable={opt.searchable}
@@ -57,8 +60,13 @@ const FilterForm = () => {
 };
 
 const AdoptionPage = () => {
+  const [opened, { open, close }] = useDisclosure(false);
+
   return (
     <BaseShell>
+      <Modal opened={opened} onClose={close} title="Filtros">
+        <FilterForm />
+      </Modal>
       <Grid style={{ marginTop: 20 }}>
         <Grid.Col
           span={{ base: 12, md: 3, lg: 3 }}
@@ -85,57 +93,19 @@ const AdoptionPage = () => {
                 span={{ base: 6, md: 2.5, lg: 2.5 }}
                 style={{ paddingTop: 32 }}
               >
-                <MyButton className={classes.mobileOnly} color="violet" fullWidth>
+                <MyButton
+                  className={classes.mobileOnly}
+                  color="violet"
+                  fullWidth
+                  onClick={open}
+                >
                   <IconAdjustmentsHorizontal size={20} strokeWidth={2} />
                   Filtros
                 </MyButton>
               </Grid.Col>
             </Grid>
             <Grid className={classes.adoptionGrid}>
-              <Grid.Col span={{ base: 12, md: 6, lg: 3, xl: 2.5 }}>
-                <MyPaper p={0} className={classes.adoptionCard}>
-                  <div className={classes.imageContainer}>
-                    <Image
-                      src="https://placedog.net/280/280?random"
-                      alt="Profile"
-                      fill
-                      style={{
-                        objectFit: "cover",
-                      }}
-                      placeholder="blur"
-                      blurDataURL="data:image/png;base64,..."
-                    />
-                  </div>
-
-                  <Stack p={8} gap={0} align="center" justify="center">
-                    <Text
-                      fw={500}
-                      size="lg"
-                      c={"violet"}
-                      style={{ display: "flex", alignItems: "center", gap: 3 }}
-                    >
-                      Hanna
-                      <span
-                        style={{
-                          display: "inline-flex",
-                          alignItems: "flex-end",
-                          position: "relative",
-                        }}
-                      >
-                        <IconVenus
-                          size={22}
-                          color="var(--mantine-color-pink-5)"
-                          strokeWidth={2}
-                        />
-                      </span>
-                    </Text>
-                    <Stack gap={0} align="center" justify="center">
-                      <Text size="md">Cachorro • Mixto</Text>
-                      <Text size="md">7km distancia</Text>
-                    </Stack>
-                  </Stack>
-                </MyPaper>
-              </Grid.Col>
+              <AdoptionCard />
             </Grid>
           </Stack>
         </Grid.Col>

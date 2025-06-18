@@ -1,0 +1,30 @@
+.adoptionDetailContainer {
+  background-color: var(--mantine-color-gray-2);
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (max-width: 767px) {
+  .adoptionDetailContainer {
+    padding-left: 0;
+    padding-right: 0;
+    overflow-x: hidden;
+    width: 100vw;
+    box-sizing: border-box;
+  }
+  .myPaperResponsive {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  .desktopButtonCol {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.breakWord {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}

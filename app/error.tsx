@@ -11,10 +11,10 @@ export default function Error() {
         <Title className={classes.title}>Ups, sucedió algo malo...</Title>
         <Text size="lg" ta="center" className={classes.description}>
           Hubo un algun error en el servidor. Por favor, intentalo de nuevo más
-          tarde.
+          tarde o contactate con nosotros.
         </Text>
         <Group justify="center">
-          <Button variant="white" size="md">
+          <Button variant="white" size="md" onClick={() => window.location.reload()}>
             Refrescar la pagina
           </Button>
         </Group>

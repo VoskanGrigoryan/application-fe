@@ -1,7 +1,7 @@
 .root {
   padding-top: 80px;
   padding-bottom: 120px;
-  background-color: var(--mantine-color-green-filled);
+  background-color: var(--mantine-color-primary-filled);
   height: 100vh;
 }
 
@@ -11,7 +11,7 @@
   font-size: 220px;
   line-height: 1;
   margin-bottom: calc(var(--mantine-spacing-xl) * 1.5);
-  color: var(--mantine-color-green-3);
+  color: var(--mantine-color-primary-3);
 
   @media (max-width: 48em) {
     font-size: 120px;
@@ -35,5 +35,5 @@
   margin: auto;
   margin-top: var(--mantine-spacing-xl);
   margin-bottom: calc(var(--mantine-spacing-xl) * 1.5);
-  color: var(--mantine-color-green-1);
+  color: var(--mantine-color-primary-1);
 }

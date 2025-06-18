@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: var(--mantine-color-green-5);
+  background-color: var(--mantine-color-primary-5);
 }
 
 .control {
@@ -30,7 +30,7 @@
     margin-bottom: 8px;
     margin-top: 8px;
     margin-right: 12px;
-    background-color: var(--mantine-color-green-4);
+    background-color: var(--mantine-color-primary-4);
     text-align: center;
     border-radius: 8px;
     color: #ffffff !important;
