@@ -17,8 +17,8 @@ import { IconMail, IconMapPin, IconPhone } from "@tabler/icons-react";
 import PetDetailCarousel from "@/src/components/carousel/petDetail";
 
 const fontSizes = {
-  text: { base: "sm", sm: "md", md: "lg", lg: "xl" },
-  title: { base: 24, sm: 32, md: 40, lg: 48 },
+  text: { base: "xs", sm: "sm", md: "md", lg: "lg" },
+  title: { base: 18, sm: 22, md: 28, lg: 36 },
 };
 
 const SectionTitle = ({ children }: { children: React.ReactNode }) => (
@@ -145,17 +145,17 @@ const ShelterInfoPaper = () => (
       <SectionTitle>Centro de adopción Imaginario</SectionTitle>
       <Text fz={fontSizes.text}>Capital Federal, Buenos Aires</Text>
       <IconLine icon={IconMapPin}>
-        <Text>Avenida No Existo 705</Text>
+        <Text  fz={fontSizes.text}>Avenida No Existo 705</Text>
       </IconLine>
       <Divider my="0" />
       <IconLine icon={IconMail}>
-        <Anchor href="mailto:refugio.falso@gmail.com" fw={700}>
+        <Anchor href="mailto:refugio.falso@gmail.com" fw={700}  fz={fontSizes.text}>
           refugio.falso@gmail.com
         </Anchor>
       </IconLine>
       <Divider my="0" />
       <IconLine icon={IconPhone}>
-        <Anchor href="tel:+541123456789" fw={700}>
+        <Anchor href="tel:+541123456789" fw={700}  fz={fontSizes.text}>
           (+54) 9 11 3245-4366
         </Anchor>
       </IconLine>
