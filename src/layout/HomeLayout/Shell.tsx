@@ -5,6 +5,7 @@ import { useDisclosure } from "@mantine/hooks";
 import classes from "./AppShell.module.css";
 import { IconUser } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
+import * as motion from "motion/react-client";
 
 const NavbarOptions = [
   { label: "Inicio", url: "/" },
@@ -24,7 +25,7 @@ export function BaseShell({
 }) {
   const [opened, { toggle }] = useDisclosure();
   const router = useRouter();
-  
+
   return (
     <AppShell
       className={className}
@@ -37,8 +38,8 @@ export function BaseShell({
       }}
       padding="md"
     >
-      <AppShell.Header className={classes.header}>
-        <Group h="100%" px="md" style={{ width: "100%" }}>
+      <AppShell.Header className={classes.header} withBorder={false}>
+        <Group h="100%" px="md" py={0} style={{ width: "100%" }}>
           <Burger
             opened={opened}
             onClick={toggle}
@@ -48,17 +49,22 @@ export function BaseShell({
           />
 
           {/* NAV LINKS (solo visibles en desktop) */}
-          <Group visibleFrom="sm" style={{ flex: 1, justifyContent: "center" }}>
+          <Group
+            visibleFrom="sm"
+            style={{ flex: 1, justifyContent: "center" }}
+            py={0}
+          >
             {NavbarOptions.map((option) => (
-              <UnstyledButton
-                key={option.label}
-                className={classes.control}
-                onClick={() => {
-                  window.location.href = option.url;
-                }}
-              >
-                {option.label}
-              </UnstyledButton>
+              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }} key={option.label}>
+                <UnstyledButton
+                  className={classes.control}
+                  onClick={() => {
+                    window.location.href = option.url;
+                  }}
+                >
+                  {option.label}
+                </UnstyledButton>
+              </motion.div>
             ))}
           </Group>
 
@@ -98,7 +104,9 @@ export function BaseShell({
         </div>
       </AppShell.Navbar>
 
-      <AppShell.Main>{children}</AppShell.Main>
+      <AppShell.Main style={{ paddingTop: 100, marginTop: 0 }}>
+        {children}
+      </AppShell.Main>
     </AppShell>
   );
 }

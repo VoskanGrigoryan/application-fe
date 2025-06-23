@@ -20,15 +20,6 @@
   cursor: pointer;
 }
 
-.control:hover,
-.control:focus {
-  background: none;
-  color: #ffffff;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
-}
-
 @media (max-width: 768px) {
   .control {
     font-size: x-large;
