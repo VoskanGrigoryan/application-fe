@@ -1,8 +1,14 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  background-color: var(--mantine-color-primary-5);
+  background-color: var(--mantine-color-secondary-6);
+}
+
+.userIconHeader {
+  margin-left: auto;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .control {

@@ -1,8 +1,10 @@
 "use client";
 
-import { AppShell, Burger, Group, UnstyledButton } from "@mantine/core";
+import { AppShell, Burger, Group, Text, UnstyledButton } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./AppShell.module.css";
+import { IconUser } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
 
 const NavbarOptions = [
   { label: "Inicio", url: "/" },
@@ -21,7 +23,8 @@ export function BaseShell({
   className?: string;
 }) {
   const [opened, { toggle }] = useDisclosure();
-
+  const router = useRouter();
+  
   return (
     <AppShell
       className={className}
@@ -35,7 +38,7 @@ export function BaseShell({
       padding="md"
     >
       <AppShell.Header className={classes.header}>
-        <Group h="100%" px="md">
+        <Group h="100%" px="md" style={{ width: "100%" }}>
           <Burger
             opened={opened}
             onClick={toggle}
@@ -43,20 +46,30 @@ export function BaseShell({
             size="sm"
             color="#fff"
           />
-          <Group justify="space-between" visibleFrom="sm" style={{ flex: 1 }}>
-            {NavbarOptions.map((option) => {
-              return (
-                <UnstyledButton
-                  key={option.label}
-                  className={classes.control}
-                  onClick={() => {
-                    window.location.href = option.url;
-                  }}
-                >
-                  {option.label}
-                </UnstyledButton>
-              );
-            })}
+
+          {/* NAV LINKS (solo visibles en desktop) */}
+          <Group visibleFrom="sm" style={{ flex: 1, justifyContent: "center" }}>
+            {NavbarOptions.map((option) => (
+              <UnstyledButton
+                key={option.label}
+                className={classes.control}
+                onClick={() => {
+                  window.location.href = option.url;
+                }}
+              >
+                {option.label}
+              </UnstyledButton>
+            ))}
+          </Group>
+
+          {/* USUARIO */}
+          <Group
+            className={classes.userIconHeader}
+            gap={8}
+            onClick={() => router.push(`/vista/auth/login`)}
+          >
+            <IconUser />
+            <Text size="xl">Iniciar sesión</Text>
           </Group>
         </Group>
       </AppShell.Header>
