@@ -19,7 +19,7 @@ const animatedProps = {
     scale: {
       type: "spring" as const,
       duration: 1,
-      bounce: 0.4,
+      bounce: 0.3,
     },
   },
   initial: { opacity: 0, scale: 0 },
@@ -45,7 +45,7 @@ const Home = () => {
             <Grid.Col span={{ base: 6, md: 3, lg: 3 }} key={option.title}>
               <motion.div
                 {...animatedProps}
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: .95 }}
                 whileTap={{ scale: 0.8 }}
               >
                 <MyPaper className={styles.paper}>

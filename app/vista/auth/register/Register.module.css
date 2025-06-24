@@ -1,9 +1,16 @@
+.containerRegister {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .blockCard {
   width: 100%;
   max-width: screen;
-  height: 380px;
+  height: 340px;
   max-height: 400px;
-  border-radius: 4%;
+  border-radius: 2%;
   overflow: hidden;
   position: relative;
   cursor: pointer;
@@ -16,7 +23,7 @@
   color: white;
   background-size: cover;
   background-position: center;
-  box-shadow: 0 4px 8px var(--mantine-color-dark-4);
+  box-shadow: 0 4px 8px var(--mantine-color-dark-3);
 }
 
 @media (min-width: 768px) {
@@ -26,29 +33,76 @@
   }
 }
 
-.containerRegister {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
-  gap: 0.5rem;
-}
-
 .stepOneContainer {
+  height: 60%;
+  width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 2rem;
-  padding-top: 20px;
+  padding: 20px;
   flex-wrap: wrap;
 }
 
 .motionAlgo {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  background-color: "rgba(0,0,0,0.4)";
+  background-color: rgba(63, 63, 63, 0.4);
   z-index: 0;
-  border-radius: 4%;
+  border-radius: 2%;
+  top: 0;
+  left: 0;
+}
+
+.informationPanelLeft {
+  box-sizing: border-box;
+  background-color: var(--mantine-color-secondary-5);
+  overflow: visible;
+  color: white;
+  align-items: baseline;
+  justify-content: center;
+  padding-top: 70px;
+  box-shadow: 0 12px 16px var(--mantine-color-dark-1);
+}
+
+@media (min-width: 768px) {
+  .informationPanelLeft {
+    height: calc(100vh - 60px);
+  }
+
+  .stepOneContainer {
+    width: 80%;
+  }
+}
+
+.footerPanelLeft {
+  position: fixed;
+  bottom: 0;
+  padding: 40px;
+}
+
+.buttonsGroup {
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media (min-width: 769px) {
+  .buttonsGroup > button {
+    width: 160px;
+    flex-shrink: 0;
+  }
+  .buttonsGroup > button:not(:last-child) {
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .buttonsGroup > button {
+    width: calc(50% - 10px);
+    margin: 0;
+  }
+  .buttonsGroup > button:first-child {
+    margin-right: 20px;
+  }
 }

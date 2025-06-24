@@ -1,20 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "@mantine/core/styles.css";
 import "@mantine/carousel/styles.css";
+import '@mantine/dates/styles.css';
 import { MantineProvider, createTheme } from "@mantine/core";
 import { Providers } from "./provider";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { montserrat } from "../src/fonts/index";
 
 export const metadata: Metadata = {
   title: "Patitas Felices",
@@ -25,6 +16,10 @@ export const metadata: Metadata = {
 };
 
 const theme = createTheme({
+  fontFamily: "var(--font-montserrat), sans-serif",
+  headings: {
+    fontFamily: "var(--font-montserrat), sans-serif",
+  },
   breakpoints: {
     xs: "500px",
     sm: "768px",
@@ -69,9 +64,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={montserrat.className}>
         <Providers>
           <MantineProvider theme={theme}>{children}</MantineProvider>
         </Providers>

@@ -8,6 +8,7 @@
   justify-content: center;
   align-items: center;
   z-index: 0;
+  padding-top: 50px;
 }
 
 .grid {

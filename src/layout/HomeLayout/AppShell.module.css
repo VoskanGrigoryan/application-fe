@@ -1,24 +1,30 @@
 .header {
   display: flex;
   align-items: center;
-  background-color: var(--mantine-color-secondary-6);
+  background-color: var(--mantine-color-white);
+  box-shadow: 0 2px 8px 0 var(--mantine-color-dark-1);
 }
 
 .userIconHeader {
   margin-left: auto;
-  color: white;
+  color: var(--mantine-color-secondary-5);
   font-weight: bold;
   cursor: pointer;
 }
 
 .control {
-  color: #ffffff;
+  color: var(--mantine-color-dark-4);
   font-size: x-large;
   border: none;
-  margin-left: 40px;
-  margin-right: 40px;
   cursor: pointer;
 }
+
+
+.logo {
+  padding: 12px;
+  cursor: pointer;
+}
+
 
 @media (max-width: 768px) {
   .control {
@@ -27,9 +33,14 @@
     margin-bottom: 8px;
     margin-top: 8px;
     margin-right: 12px;
-    background-color: var(--mantine-color-primary-4);
+    padding: 10px;
+    background-color: var(--mantine-color-secondary-5);
     text-align: center;
-    border-radius: 8px;
+    border-radius: 4px;
     color: #ffffff !important;
+  }
+
+  .logo {
+    display: none;
   }
 }

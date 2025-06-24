@@ -5,6 +5,7 @@ interface IMyButton extends ButtonProps {
   children: ReactNode;
   ariaLabel?: string;
   onClick?: () => void;
+  type?: "button" | "submit" | "reset";
 }
 
 const MyButton = ({
