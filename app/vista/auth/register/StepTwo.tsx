@@ -1,7 +1,7 @@
 import { IStepOptions, WizardFormData } from "@/src/interfaces/register";
 import {
   Grid,
-  Input,
+  Loader,
   PasswordInput,
   Select,
   Stack,
@@ -12,39 +12,21 @@ import { DatePickerInput } from "@mantine/dates";
 import MyButton from "@/src/components/generic/button";
 import classes from "./Register.module.css";
 import { useRegisterWizard } from "@/src/stores/registerWizardStore";
-
-const provinciasDeArgentina = [
-  "Buenos Aires",
-  "Catamarca",
-  "Chaco",
-  "Chubut",
-  "Córdoba",
-  "Corrientes",
-  "Entre Ríos",
-  "Formosa",
-  "Jujuy",
-  "La Pampa",
-  "La Rioja",
-  "Mendoza",
-  "Misiones",
-  "Neuquén",
-  "Río Negro",
-  "Salta",
-  "San Juan",
-  "San Luis",
-  "Santa Cruz",
-  "Santa Fe",
-  "Santiago del Estero",
-  "Tierra del Fuego",
-  "Tucumán",
-  "Ciudad Autónoma de Buenos Aires",
-];
+import { useGetProvincesQuery } from "../../../../src/redux/features/location/locationSlice";
+import { useGetCitiesQuery } from "../../../../src/redux/features/location/locationSlice";
+import { useEffect, useState } from "react";
+import { skipToken } from "@reduxjs/toolkit/query/react";
 
 // Step 2
 const StepTwo = ({ step, setStep, tipoDeCuenta }: IStepOptions) => {
   const updateFormData = useRegisterWizard((state) => state.updateFormData);
   const formData = useRegisterWizard((state) => state.formData);
 
+  const [citySearch, setCitySearch] = useState("");
+
+  const { data: provinces, isLoading, isError } = useGetProvincesQuery();
+
+  //Register form
   const form = useForm<{
     name: string;
     lastname: string;
@@ -97,15 +79,46 @@ const StepTwo = ({ step, setStep, tipoDeCuenta }: IStepOptions) => {
     },
   });
 
+  const selectedProvince = provinces?.find(
+    (p) => p.name === form.values.province
+  );
+
   const handleSubmit = (values: WizardFormData) => {
     updateFormData(values);
-    setStep?.(2); // move to next step after saving
+    setStep?.(2);
   };
 
+  // Trigger query only if province is selected and citySearch length >= 3
+  const {
+    data: cities,
+    isLoading: citiesLoading,
+    isError: citiesError,
+  } = useGetCitiesQuery(
+    selectedProvince && citySearch.length >= 3
+      ? { provinceId: selectedProvince.id, query: citySearch }
+      : skipToken,
+    { skip: !(selectedProvince && citySearch.length >= 3) }
+  );
+
+  // update form city value and search input separately:
+  const handleCityInputChange = (value: string) => {
+    setCitySearch(value);
+    form.setFieldValue("city", value || "");
+  };
+
+  useEffect(() => {
+    form.setFieldValue("city", "");
+    setCitySearch("");
+  }, [form.values.province]);
+
+  const cityOptions = selectedProvince && citySearch.length >= 3 && cities
+  ? cities.map(city => city.name)
+  : [];
+
+  console.log("provinces", provinces);
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
       <Grid gutter={0} p={20}>
-        {/* Column 1 */}
         <Grid.Col span={{ base: 12, md: 4 }} p={20}>
           <Stack>
             <TextInput
@@ -166,7 +179,6 @@ const StepTwo = ({ step, setStep, tipoDeCuenta }: IStepOptions) => {
           </Stack>
         </Grid.Col>
 
-        {/* Column 2 */}
         <Grid.Col span={{ base: 12, md: 4 }} p={20}>
           <Stack>
             <Select
@@ -192,28 +204,32 @@ const StepTwo = ({ step, setStep, tipoDeCuenta }: IStepOptions) => {
 
             <Select
               label="Provincia"
-              placeholder="Capital Federal"
-              data={provinciasDeArgentina}
+              placeholder={
+                isLoading ? "Cargando provincias..." : "Elegí una provincia"
+              }
+              data={provinces ? provinces.map((prov) => prov.name) : []}
               value={form.values.province}
               onChange={(value) => form.setFieldValue("province", value || "")}
               error={form.errors.province}
+              disabled={isLoading || isError}
             />
 
-            <TextInput
+            <Select
               label="Ciudad"
-              placeholder="Buenos Aires"
+              placeholder="Ingrese al menos 3 caracteres"
+              searchable
               value={form.values.city}
-              onChange={(event) =>
-                form.setFieldValue("city", event.currentTarget.value)
-              }
+              onSearchChange={handleCityInputChange}
+              onChange={(value) => form.setFieldValue("city", value || "")}
+              data={cityOptions}
               error={form.errors.city}
               radius="md"
               disabled={!form.values.province}
+              rightSection={citiesLoading ? <Loader size="xs" /> : null}
             />
           </Stack>
         </Grid.Col>
 
-        {/* Column 3 */}
         <Grid.Col span={{ base: 12, md: 4 }} p={20}>
           <Stack>
             <TextInput
@@ -286,7 +302,7 @@ const StepTwo = ({ step, setStep, tipoDeCuenta }: IStepOptions) => {
               Volver atrás
             </MyButton>
             <MyButton type="submit" disabled={!form.isValid()}>
-              Siguiente
+              {tipoDeCuenta === 0 ? "Finalizar" : "Siguiente"}
             </MyButton>
           </div>
         </Grid.Col>

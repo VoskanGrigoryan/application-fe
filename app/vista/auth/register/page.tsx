@@ -34,7 +34,7 @@ export default function RegisterView() {
   const tipoDeCuenta = useRegisterWizard((state) => state.tipoDeCuenta);
   const setTipoDeCuenta = useRegisterWizard((state) => state.setTipoDeCuenta);
 
-  const formData = useRegisterWizard((state) => state.formData);
+  // const formData = useRegisterWizard((state) => state.formData);
 
   const currentText = TextForEachStep[step];
   const steps = [
@@ -50,8 +50,6 @@ export default function RegisterView() {
       tipoDeCuenta={tipoDeCuenta}
       setTipoDeCuenta={setTipoDeCuenta}/>,
   ];
-
-  console.log("Form Data:", formData);
 
   return (
     <BaseShell>
