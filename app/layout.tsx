@@ -55,6 +55,7 @@ const theme = createTheme({
       "#3b1898",
     ],
   },
+  cursorType: 'pointer',
 });
 
 export default function RootLayout({

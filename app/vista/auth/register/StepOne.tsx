@@ -3,14 +3,14 @@ import shelterBlock from "../../../../public/shelterBlock.jpg";
 import { Text, Title } from "@mantine/core";
 import * as motion from "motion/react-client";
 import classes from "./Register.module.css";
-import { useRegisterWizard } from "@/src/stores/registerWizardStore";
+import { useRegisterWizard } from "@/src/zustand/registerWizardStore";
 
 const animatedProps = {
   transition: {
     duration: 1,
     scale: {
       type: "spring" as const,
-      duration: .7,
+      duration: 0.7,
       bounce: 0.2,
     },
   },
@@ -19,8 +19,7 @@ const animatedProps = {
 };
 
 //Step 0
- const StepOne = () => {
-
+const StepOne = () => {
   const setStep = useRegisterWizard((state) => state.setStep);
   const setTipoDeCuenta = useRegisterWizard((state) => state.setTipoDeCuenta);
 
@@ -31,7 +30,7 @@ const animatedProps = {
           setStep?.(1), setTipoDeCuenta?.(0);
         }}
         whileHover={{ scale: 0.95 }}
-        whileTap={{ scale: 0.90 }}
+        whileTap={{ scale: 0.9 }}
         className={classes.blockCard}
         {...animatedProps}
         style={{ backgroundImage: `url(${userBlock.src})` }}
@@ -39,7 +38,8 @@ const animatedProps = {
         <div style={{ position: "relative", zIndex: 1 }}>
           <Title order={1}>Quiero adoptar</Title>
           <Text size="md" fw={700}>
-            Si lo que querés es adoptar un compañero de vida, esta es la opción correcta.
+            Si lo que querés es adoptar un compañero de vida, esta es la opción
+            correcta.
           </Text>
         </div>
         <div className={classes.motionAlgo} />
@@ -50,7 +50,7 @@ const animatedProps = {
           setStep?.(1), setTipoDeCuenta?.(1);
         }}
         whileHover={{ scale: 0.95 }}
-        whileTap={{ scale: 0.90 }}
+        whileTap={{ scale: 0.9 }}
         className={classes.blockCard}
         {...animatedProps}
         style={{ backgroundImage: `url(${shelterBlock.src})` }}
@@ -58,7 +58,8 @@ const animatedProps = {
         <div style={{ position: "relative", zIndex: 1 }}>
           <Title order={1}>Quiero dar en adopción</Title>
           <Text size="md" fw={700}>
-            Si lo que querés es dar en adopción animalitos, esta es tu opción.
+            Si queres darle visibilidad a tu refugio y a sus residentes esta es
+            tu opción.
           </Text>
         </div>
         <div className={classes.motionAlgo} />
@@ -67,4 +68,4 @@ const animatedProps = {
   );
 };
 
-export default StepOne
+export default StepOne;

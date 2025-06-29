@@ -85,15 +85,10 @@
 .buttonsGroup {
   display: flex;
   justify-content: flex-start;
-}
 
-@media (min-width: 769px) {
   .buttonsGroup > button {
-    width: 160px;
+    min-width: 160px;
     flex-shrink: 0;
-  }
-  .buttonsGroup > button:not(:last-child) {
-    margin-right: 20px;
   }
 }
 
@@ -104,5 +99,8 @@
   }
   .buttonsGroup > button:first-child {
     margin-right: 20px;
+  }
+  .footerPanelLeft {
+    display: none;
   }
 }

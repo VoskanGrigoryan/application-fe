@@ -7,11 +7,11 @@ import { Grid, Stack, Text, Title } from "@mantine/core";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
-import { useRegisterWizard } from "@/src/stores/registerWizardStore";
+import { useRegisterWizard } from "@/src/zustand/registerWizardStore";
 
 const TextForEachStep = [
   {
-    title: "Primero elegí si te interesa adoptar o dar en adopción",
+    title: "Elegí si queres adoptar o dar en adopción",
     subtitle:
       "No te preocupes, aunque eligas la opción de refugio vas a poder adoptar igual 😁",
   },
@@ -39,16 +39,8 @@ export default function RegisterView() {
   const currentText = TextForEachStep[step];
   const steps = [
     <StepOne />,
-    <StepTwo
-      step={step}
-      setStep={setStep}
-      tipoDeCuenta={tipoDeCuenta}
-      setTipoDeCuenta={setTipoDeCuenta}
-    />,
-    <StepThree step={step}
-      setStep={setStep}
-      tipoDeCuenta={tipoDeCuenta}
-      setTipoDeCuenta={setTipoDeCuenta}/>,
+    <StepTwo setStep={setStep} tipoDeCuenta={tipoDeCuenta} />,
+    <StepThree setStep={setStep} />,
   ];
 
   return (
@@ -61,10 +53,15 @@ export default function RegisterView() {
           className={classes.informationPanelLeft}
         >
           <Stack p={24} pt={30}>
-            <Title c={"white"} fw={400} order={1} textWrap="balance">
+            <Title
+              c={"white"}
+              fw={400}
+              fz={{ base: 30, md: 34 }}
+              textWrap="pretty"
+            >
               {currentText.title}
             </Title>
-            <Text fw={600} c="white" fz={20}>
+            <Text fw={600} c="white" fz={{ base: 16, md: 20 }}>
               {currentText.subtitle}
             </Text>
           </Stack>
